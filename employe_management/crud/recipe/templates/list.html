@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Recipe List</title>
+  </head>
+  <body>
+    <h1>Recipes:</h1>
+    <ul>
+      {% for recipe in employees %}
+      <li>
+        {{ recipe.recipe_name }} - {{ recipe.recipe_description }} -
+        {{recipe.recipe_ingre}}
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

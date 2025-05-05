@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Posts</title>
+  </head>
+  <body>
+    <h1>All Posts</h1>
+    {% for p in posts %}
+    <div>
+      <h2>{{ p.post_heading }}</h2>
+      <p>{{ p.post_text }}</p>
+      <form action="{% url 'likes' %}?post_id={{ p.id }}" method="post">
+        {% csrf_token %}
+        <button type="submit">Like</button>
+      </form>
+    </div>
+    <hr />
+    {% empty %}
+    <p>No posts found.</p>
+    {% endfor %} {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </body>
+</html>

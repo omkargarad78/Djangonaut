@@ -1,0 +1,10 @@
+<h2>Post List</h2>
+{% for post in posts %}
+<h3>{{ post.title }}</h3>
+<p>{{ post.content }}</p>
+{% if request.user.is_superuser %}
+<a href="{% url 'post_update' post.pk %}">Edit</a> |
+<a href="{% url 'post_delete' post.pk %}">Delete</a>
+{% endif %} {% endfor %} {% if request.user.is_superuser %}
+<a href="{% url 'post_create' %}">Add New Post</a>
+{% endif %}

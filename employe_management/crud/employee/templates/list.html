@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Employee List</title>
+  </head>
+  <body>
+    <h2>Employee List</h2>
+    <a href="{% url 'create' %}">Add New Employee</a>
+    <br /><br />
+    <table border="1">
+      <tr>
+        <th>Emp ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Actions</th>
+      </tr>
+      {% for emp in employees %}
+      <tr>
+        <td>{{ emp.employee_id }}</td>
+        <td>{{ emp.employee_name }}</td>
+        <td>{{ emp.employee_email }}</td>
+        <td>{{ emp.employee_contact }}</td>
+        <td>
+          <a href="{% url 'update' emp.id %}">Edit</a> |
+          <form
+            method="POST"
+            action="{% url 'delete' emp.id %}"
+            style="display: inline"
+          >
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
